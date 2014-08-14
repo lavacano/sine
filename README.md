@@ -1,4 +1,4 @@
-Hello World C
+Sine Computation Program
 
 
 Just type make stable!
