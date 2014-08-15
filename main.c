@@ -6,7 +6,7 @@
 
 int main ( int argc, char *argv[] )
 {
-	int	degree, answer, increment;
+	int	degree, answer, increment, maximum;
 	double	radian, pi, value;
 
 	pi = atan2 ( 0, -1 );
@@ -22,19 +22,26 @@ int main ( int argc, char *argv[] )
 		printf ( "\nInvalid Entry\n" );
 		return 1;
 	}
-/*	printf(argv[1]);
 
 	if ( argv[1] == "" )
 	{
-		printf(argv[1]);
-		argv[1]=0;
+		degree=0;
 	}
-	int minimum = atoi(argv[1]);
-	int maximum = atoi(argv[2]);
-	printf(minimum);
-	//if minimum ==
-*/	
-	while ( degree <= 360 )
+	else
+	{
+		degree = atoi(argv[1]);
+	}
+	
+	if ( argv[2] == "" )
+	{
+		maximum=360;
+	}
+	else
+	{
+		maximum= atoi(argv[2]);
+	}
+	
+	while ( degree <= maximum )
 	{
   
 		if ( degree == 0 && answer == 0 )
