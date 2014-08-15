@@ -1,29 +1,69 @@
 /* Sine Computation program */
 
 #include <stdio.h>
-#include <stdlib.h>
 #include <math.h>
+#include <unistd.h>
 
-int main(int argc, char **argv)
+int main ( int argc, char *argv[] )
 {
-	int	angle_degree;
-	double	angle_radian, pi, value;
+	int	degree, answer, increment;
+	double	radian, pi, value;
 
-	printf ("\nCompute a table of the sine function\n\n");
+	pi = atan2 ( 0, -1 );
 
-	pi = 4.0*atan(1.0);
-	printf ( "Value of PI = %f \n\n", pi );
-	printf ( " angle	Sine \n" );
+	printf ( "Enter 0 for csv list, or 1 for a console formatted list: " );
+	scanf ( "%d", &answer );
 
-	angle_degree=0;
+	printf ( "Enter an increment value >= 1, < 360: " );
+	scanf ( "%d", &increment );
 
-	while ( angle_degree <= 360 )
+	if ( increment <= 0.999999 )
 	{
-		angle_radian = pi * angle_degree/180.0 ;
-		value = sin(angle_radian);
-		printf ( " %3d	%f \n ", angle_degree, value );
-
-		angle_degree = angle_degree +10;
+		printf ( "\nInvalid Entry\n" );
+		return 1;
 	}
+/*	printf(argv[1]);
+
+	if ( argv[1] == "" )
+	{
+		printf(argv[1]);
+		argv[1]=0;
+	}
+	int minimum = atoi(argv[1]);
+	int maximum = atoi(argv[2]);
+	printf(minimum);
+	//if minimum ==
+*/	
+	while ( degree <= 360 )
+	{
+  
+		if ( degree == 0 && answer == 0 )
+		{
+			printf ( "PI = %f \n\n", pi );
+			printf ( "\"Degree\",\"Sine\"\n\n" );
+		}
+		else if ( degree == 0 && answer == 1 )
+		{
+			printf ( "PI = %f \n\n", pi );
+			printf ( "Degree\tSine\n\n" );
+		}
+		radian = pi * degree/180.0 ;
+		value = sin ( radian );
+
+		if ( answer == 0 )
+		{
+			printf ( "\"%d\",\"%f\"\n", degree, value );
+		}
+
+		else
+		{
+			printf ( "%6d\t%f\n", degree, value );
+		}
+
+		degree = degree +increment;
+
+	}
+
 	return 0;
+
 }
