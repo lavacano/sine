@@ -3,44 +3,76 @@
 #include <stdio.h>
 #include <math.h>
 #include <unistd.h>
+#include <errno.h>
+#include <limits.h>
+#include <stdlib.h>
 
 int main ( int argc, char *argv[] )
 {
 	int	degree, answer, increment, maximum;
 	double	radian, pi, value;
-
+	
 	pi = atan2 ( 0, -1 );
 
+	// BREAKS
+
+	if ( argc > 3 )
+	{
+	  printf( "Your arguments are too many\n" );
+	  return -1;
+	}
+	// if ( strcmp(argv[1], "integer" ) != 
+
+        printf( "argc:     %d\n", argc );
 	printf ( "Enter 0 for csv list, or 1 for a console formatted list: " );
 	scanf ( "%d", &answer );
 
-	printf ( "Enter an increment value >= 1, < 360: " );
-	scanf ( "%d", &increment );
-
-	if ( increment <= 0.999999 )
+	
+	if (  argc == 2 )
 	{
-		printf ( "\nInvalid Entry\n" );
-		return 1;
-	}
-
-	if ( argv[1] == "" )
-	{
-		degree=0;
-	}
-	else
-	{
+		maximum = atoi(argv[1]);
 		degree = atoi(argv[1]);
 	}
-	
-	if ( argv[2] == "" )
+	else if ( argc == 1 )
 	{
-		maximum=360;
+		degree = 0;
+		maximum = 360;
+		printf ( "Enter an increment value >= 1, < 360: " );
+		scanf ( "%d", &increment );
+			if ( increment <= 0.999999 )
+			{
+				printf ( "\nInvalid Entry\n" );
+				return 1;
+			}
 	}
 	else
 	{
-		maximum= atoi(argv[2]);
-	}
+		printf ( "Enter an increment value >= 1, < 360: " );
+		scanf ( "%d", &increment );
+		if ( increment <= 0.999999 )
+		{
+			printf ( "\nInvalid Entry\n" );
+			return 1;
+		}
+		if ( strcmp(argv[1], "integer" ) == 0 )
+		{
+			degree=0;
+		}
+		else
+		{
+			degree = atoi(argv[1]);
+		}
 	
+		if ( strcmp(argv[2], "integer") == 0 )
+		{
+			maximum=360;
+		}
+		else
+		{
+			maximum= atoi(argv[2]);
+		}
+	}
+
 	while ( degree <= maximum )
 	{
   
